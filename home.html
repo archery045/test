@@ -134,5 +134,43 @@
   <footer>
     <p>© 2025 Ashii & Archery045. All rights reserved.</p>
   </footer>
+
+  <!-- ปุ่มกลับไปบนสุด -->
+<button id="backToTop" 
+  style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    background-color: #00adb5;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 999;
+  ">
+  ↑
+</button>
+
+<script>
+// แสดง/ซ่อนปุ่มเมื่อเลื่อนลง
+window.onscroll = function() {
+  const btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+// เลื่อนขึ้นด้านบนแบบ smooth
+document.getElementById("backToTop").addEventListener("click", function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
 </body>
 </html>
