@@ -1,70 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashii - あしい</title>
+  <title>年齢確認 | Ashii</title>
   <style>
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
     body {
-  margin: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #ffffff; /* <- สีขาว */
-  color: #222; /* ตัวหนังสือเปลี่ยนเป็นสีเข้ม */
-  text-align: center;
-}
-
-    header {
-      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+      background: #ffffff;
+      color: #111;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-    }
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-      letter-spacing: 4px;
-    }
-    nav {
-      margin-top: 2rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #222;
-      margin: 0 1.5rem;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #00adb5;
-    }
-    footer {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
+      justify-content: center;
+      padding: 24px;
       text-align: center;
-      font-size: 0.8rem;
-      color: #888;
     }
+    .card {
+      width: 100%;
+      max-width: 560px;
+      padding: 32px;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 8px; letter-spacing: .04em; }
+    p  { margin: 0 0 20px; line-height: 1.7; color: #444; }
+    .note { font-size: .9rem; color: #666; margin-top: 8px; }
+    .actions { display: flex; gap: 12px; justify-content: center; margin-top: 18px; }
+    button {
+      appearance: none; border: 0; padding: 12px 18px; border-radius: 12px;
+      font-weight: 600; cursor: pointer;
+    }
+    .yes { background: #111; color: #fff; }
+    .no  { background: #f3f4f6; color: #111; }
+    .yes:active { transform: translateY(1px); }
+    .no:active  { transform: translateY(1px); }
+    .brand { font-size: .85rem; color: #999; margin-top: 24px; }
   </style>
 </head>
 <body>
-  <header>
-    <img src="banner2.png" alt="Banner" style="width:100%; max-height:300px; object-fit:cover;">
-    <h1>ASHII - あしい</h1>
-    <p style="font-size:1.2rem; color:#555; margin-top:0.5rem;">
-    熊系男性とゲイをテーマに描くフリーアーティスト「Ashii - あしい」の公式サイト。
-
-    </p>
-    <nav>
-      <a href="#shop">Shop</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <footer>
-    <p>© 2025 Ashii & Archery045. All rights reserved.</p>
-  </footer>
+  <div class="card">
+    <h1>年齢確認</h1>
+    <p>この先のページには成人向けの内容が含まれる場合があります。<br>あなたは18歳以上ですか？</p>
+    <div class="actions">
+      <button class="yes" id="enter">はい、18歳以上です</button>
+      <button class="no" id="leave">いいえ</button>
+    </div>
+    <p class="note">※「はい」を選択すると同意情報を端末に保存し、以後は確認を省略します。</p>
+    <div class="brand">© 2025 Ashii</div>
+  </div>
+  <script>
+    document.getElementById('enter').addEventListener('click', function () {
+      try {
+        localStorage.setItem('ageVerified', 'true');
+      } catch (e) {}
+      window.location.href = 'home.html';
+    });
+    document.getElementById('leave').addEventListener('click', function () {
+      window.location.href = 'underage.html';
+    });
+  </script>
 </body>
 </html>
